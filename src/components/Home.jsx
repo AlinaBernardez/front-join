@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Home = ({data}) => {
   return (
     <>
-      <h1>Home</h1>
+      <h1>Tasks</h1>
       <ul>
         {data.map(task => (
           <li key={task._id}>

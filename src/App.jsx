@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./Home";
-import ItemDetailPage from "./ItemDetailPage";
+import Home from './components/Home';
+import ItemDetailPage from './components/ItemDetailPage';
+import InputTask from "./components/InputTask";
+import './App.css'
 
 const App = () => {
   const [data, setData] = useState(null)
@@ -20,20 +22,21 @@ const App = () => {
 
   useEffect(() => {
     fetchData()
-    console.log(data)
-  }, [])
+  }, [data])
 
   return (
   <Router>
     <div>
       <nav>
         <Link to='/'>Home</Link>
+        <Link to='/create' >Add task</Link>
       </nav>
       {data === null ? (
         <div>Loading...</div>
       ) : (
         <Routes>
           <Route path='/' element={<Home data={data} />} />
+          <Route path='/create' element={<InputTask />} />
           {data.map(task => (
             <Route key={task._id} path={`/${task._id}`} element={<ItemDetailPage task={task} />} />
           ))}
